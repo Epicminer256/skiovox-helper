@@ -12,6 +12,5 @@
 Here are the features I am working on:
 - Link to change search engine (I recommend bing so I may recommend it in final ver)
 - Add a safeguard for Skivox users with single window only to not have the window close
-- Add 24 hour mode to clock
 - make it look like Chrome's new tab
 - Make extention button show battery level in it's icon and show links/settings when clicked
