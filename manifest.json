@@ -9,74 +9,75 @@
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAumR4jfjFFAV2w/Ag56R6CLN2FNVnOO03UyayDHJJOGAXc7MIzElD6opvefPoZi6EHPqH4IvuRZ+u3EaWdv36lUOWMx7ieHjptmvyMF1BTaKbFaH5iyn/8dwnGvKoqWftA+mn1eb7vvzrQWaewP2IuMuHckY9p/whRy0XyW4bAMYP5Uw+oCTMayNzB8LbiczHttVt4f3003bRZ5QljqSl7QNHL6gCUteXKMCMYiXNigSTaShHeXjKWIaKwSoyU/kpKkr1YyCQlbtBGVwQQbuiaA34f7o0ZG6I57hPB+0bMHXIvEGj4kcHZo3C6iVWaV1dS3XCC/q404Kr09lqjloS7wIDAQAB",
   "commands": {
     "ACCESS_HISTORY": {
-      "description": "Ctrl+H"
+      "description": "Ctrl+H (History)"
     },
     "ACCESS_DOWNLOADS": {
-      "description": "Ctrl+J"
+      "description": "Ctrl+J (Downloads)"
     },
     "NEW_TAB": {
-      "description": "Ctrl+T"
+      "description": "Ctrl+T (New Tab)"
     },
     "CLOSE_TAB": {
-      "description": "Ctrl+W"
+      "description": "Ctrl+W (Close Tab)"
     },
     "RESTORE_TAB": {
-      "description": "Ctrl+Shift+T"
+      "description": "Ctrl+Shift+T (Restore Tab)"
     },
     "NEW_WINDOW": {
-      "description": "Ctrl+N"
+      "description": "Ctrl+N (New Window)"
     },
     "NEW_INCOG_WINDOW": {
-      "description": "Ctrl+Shift+N"
+      "description": "Ctrl+Shift+N (New Incognito)"
     },
     "CLOSE_WINDOW": {
-      "description": "Ctrl+Shift+W"
+      "description": "Ctrl+Shift+W (Close Window)"
     },
     "TAB_NEXT": {
-      "description": "Cycle forwards through tabs: Ctrl+Q"
+      "description": "Ctrl+Q (Cycle forwards through tabs)"
     },
     "TAB_BACK": {
-      "description": "Cycle backwards through tabs: Ctrl+Shift+Q"
+      "description": "Ctrl+Shift+Q (Cycle backwards through tabs)"
     },
     "SWITCH_WINDOWS": {
-      "description": "Switch windows: Alt+Q"
+      "description": "Alt+Q (Switch windows)"
     },
     "CTRL_1": {
-      "description": "Ctrl+1"
+      "description": "Ctrl+1 (First tab)"
     },
     "CTRL_2": {
-      "description": "Ctrl+2"
+      "description": "Ctrl+2 (Second tab)"
     },
     "CTRL_3": {
-      "description": "Ctrl+3"
+      "description": "Ctrl+3 (Third tab)"
     },
     "CTRL_4": {
-      "description": "Ctrl+4"
+      "description": "Ctrl+4 (Fourth tab)"
     },
     "CTRL_5": {
-      "description": "Ctrl+5"
+      "description": "Ctrl+5 (Fifth tab)"
     },
     "CTRL_6": {
-      "description": "Ctrl+6"
+      "description": "Ctrl+6 (Sixth tab)"
     },
     "CTRL_7": {
-      "description": "Ctrl+7"
+      "description": "Ctrl+7 (Seventh tab)"
     },
     "CTRL_8": {
-      "description": "Ctrl+8"
+      "description": "Ctrl+8 (Eighth tab)"
     },
     "CTRL_9": {
-      "description": "Ctrl+9"
+      "description": "Ctrl+9 (Ninth tab)"
     },
     "VIEW_SOURCE": {
-      "description": "Ctrl+U"
+      "description": "Ctrl+U (View Source)"
     }
   },
   "background": {
     "scripts": [
       "/background/commands.js",
       "/background/setup.js",
-      "/background/webstore-fix.js"
+      "/background/webstore-fix.js",
+      "/background/batterywarning.js"
     ]
   },
   "chrome_url_overrides": {

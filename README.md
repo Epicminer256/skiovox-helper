@@ -1,21 +1,17 @@
-# Skiovox Helper
-### The helper extension for the Skiovox exploit.
-
-## Install
-
-**Installation steps can be seen in the "stage 3" section on [skiovox.com](https://skiovox.com)**
-
-Once installed, open a new tab to see the extension's homepage.
-
-## Features
-- Fixes most shortcut functionality within the exploit
-- Allows for resizing and dragging of windows
-- Makes it easier to add Google accounts and use the Web Store within the exploit
-- Fixes functionality of some Google logins on webpages
-- Allows you to see time, date, and battery.
-
-*Note: You can exit fullscreen by pressing ctrl+T after you've set up the shortcuts.*
-
-![image](https://github.com/zkayns/skiovox-helper/assets/80561998/4c09893a-65a5-45da-b70b-5f3d20c27d54)
-
-If you need to install extensions with chromewebstore.google.com blocked, try [Skebstore.](https://github.com/bypassiwastaken/skebstore)
+# Skiovox Helper (forked ver)
+![Preview image](preview.png)
+## New features
+- No more annoying title and version number
+- Battery warning when it only has 15 minutes remaining and 5 minutes remaining
+- Settings, WiFi, and Bluetooth link to chrome://os-settings for a smoother experience
+- Audio settings button
+- UI background alpha color changable
+- Battery warnings for 15% and 5% battery globally
+- Has default background
+## To impliment
+Here are the features I am working on:
+- Link to change search engine (I recommend bing so I may recommend it in final ver)
+- Add a safeguard for Skivox users with single window only to not have the window close
+- Add 24 hour mode to clock
+- make it look like Chrome's new tab
+- Make extention button show battery level in it's icon and show links/settings when clicked

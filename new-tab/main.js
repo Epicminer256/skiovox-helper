@@ -5,36 +5,36 @@ import { DateDisplay } from "./date-display.js";
 import { TimeDisplay } from "./time-display.js";
 import { BackgroundController } from "./background-controller.js";
 
-const WIFI_URL = "chrome://network/#select";
-const BLUETOOTH_URL = "chrome://bluetooth-pairing";
-const SETTINGS_URL = "chrome://settings";
+const WIFI_URL = "chrome://os-settings/networks?type=WiFi";
+const BLUETOOTH_URL = "chrome://os-settings/bluetoothDevices";
+const SETTINGS_URL = "chrome://os-settings/";
 const NEW_TAB_URL = "chrome://new-tab-page";
 const FILES_URL = "chrome://file-manager";
-const HELP_URL = "https://github.com/bypassiwastaken/skiovox-helper";
+const HELP_URL = "https://github.com/epicminer256/skiovox-helper";
 const WEBSTORE_URL = "https://chromewebstore.google.com";
 const ADDSESSION_URL = "https://accounts.google.com/signin/v2/identifier?hl=en&continue=https%3A%2F%2Fwww.google.com%2F&ec=GAlAmgQ&flowName=GlifWebSignIn&flowEntry=AddSession";
 
-let [
-    help,
-    webStore,
-    addAccount,
-    move,
-    fullscreen,
-    reset,
-    theme,
-    colorChange,
-    wifi,
-    bluetooth,
-    files,
-    settings
-] = document.querySelectorAll('svg')
+let help = document.querySelector("#help-btn")
+let webStore = document.querySelector("#ext-btn")
+let addAccount = document.querySelector("#account-btn")
+let move = document.querySelector("#drag-btn")
+let fullscreen = document.querySelector("#fullscreen-btn")
+let reset = document.querySelector("#reset-btn")
+let theme = document.querySelector("#chrome-theme-btn")
+let colorChange = document.querySelector("#color-btn")
+let backgroundChange = document.querySelector("#background-btn")
+let wifi = document.querySelector("#wifi-btn")
+let bluetooth = document.querySelector("#bluetooth-btn")
+let files = document.querySelector("#files-btn")
+let settings = document.querySelector("#settings-btn")
+let audio = document.querySelector("#audio-btn")
 
-let version = document.querySelector('.version')
 let date = document.querySelector('.date')
 let time = document.querySelector('.time')
-let battery = document.querySelector('.battery')
+let batteryPercent = document.querySelector('.batteryPercent')
+let batterySlider = document.querySelector('.batterySlider')
+let batteryTime = document.querySelector('.batteryTime')
 
-version.textContent = "v" + chrome.runtime.getManifest().version
 
 wifi.addEventListener('click', () => {
     chrome.tabs.create({ url: WIFI_URL })
@@ -83,9 +83,12 @@ reset.addEventListener('click', () => {
     }
 })
 
+audio.addEventListener('click', () => {
+    chrome.tabs.create({ url: "chrome://os-settings/audio" })
+})
 new DragController(move);
 new FullscreenController(fullscreen);
-new BatteryDisplay(battery);
+new BatteryDisplay(batteryPercent, batterySlider, batteryTime);
 new DateDisplay(date);
 new TimeDisplay(time);
-new BackgroundController(colorChange);
+new BackgroundController(colorChange, backgroundChange);

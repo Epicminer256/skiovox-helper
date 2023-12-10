@@ -1,5 +1,4 @@
 const SHORTCUTS_URL = "chrome://extensions/shortcuts"
-
 if (!localStorage.setUpYetWithNewStuff) {
     chrome.windows.getLastFocused((window) => {
         // do not remove -- this is necessary for 2A users
