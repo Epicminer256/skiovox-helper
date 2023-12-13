@@ -85,6 +85,7 @@ p {
   position: fixed;
   padding: 13px;
   border-top-right-radius: 16.7px;
+  border-top-left-radius: 16.7px;
   text-align: center;
 }
 

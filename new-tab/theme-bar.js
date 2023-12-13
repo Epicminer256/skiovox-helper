@@ -1,28 +1,27 @@
-const TextColors = {
-    BLACK: 0,
-    WHITE: 1
-}
-
-class BackgroundController {
+class ThemeBar{
     static DEFAULT_COLOR = "#212121";
     static DEFAULT_ALPHA = ".25";
+    static NEW_TAB_URL = "chrome://new-tab-page";
+    static DEFAULT_IMAGE = "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?q=80&w=1280&";
+    constructor(){
+        this.TextColors = {
+            BLACK: 0,
+            WHITE: 1
+        }
+        
+        this.reset = document.querySelector("#reset-btn")
+        this.theme = document.querySelector("#chrome-theme-btn")
+        this.colorChange = document.querySelector("#color-btn")
+        this.backgroundChange = document.querySelector("#background-btn")
 
-    constructor(colorChange, backgroundChange) {
-        this.colorChange = colorChange
-        this.backgroundChange = backgroundChange
-        this.makeInputs()
-        this.startListeners()
-        this.displaySavedProperties()
-    }
-
-    makeInputs() {
         this.colorInput = document.createElement('input')
+        this.alphaInput = document.createElement('input')
+        this.alphaChange = this.alphaInput
+
         this.colorInput.value = this.getSavedColor()
         this.colorInput.type = "color"
-        this.alphaInput = document.createElement('input')
         this.alphaInput.min = 0
         this.alphaInput.max = 100
-        this.alphaChange = this.alphaInput
         this.colorInput.value = this.getSavedAlpha()
         this.alphaInput.type = 'range'
 
@@ -54,16 +53,25 @@ class BackgroundController {
         this.fileInput.accept = "image/png, image/jpeg, image/gif, image/webp"
         this.fileInput.style.visibility = "hidden"
         document.body.appendChild(this.fileInput)
-    }
 
-    startListeners() {
+        this.reset.addEventListener('click', () => {
+            if (confirm("Are you sure you want to reset Skiovox helper settings?")) {
+                localStorage.clear()
+                chrome.runtime.reload()
+            }
+        })
+        this.theme.addEventListener('click', () => {
+            alert("The original New Tab page will now open. On that page, click the edit icon in the bottom right corner to edit your browser theme.")
+            chrome.tabs.create({ url: this.NEW_TAB_URL })
+        })
         this.colorChange.addEventListener('click', this.onClickedColor.bind(this))
         this.colorInput.addEventListener('input', this.onInputColor.bind(this))
         this.alphaInput.addEventListener('input', this.onInputColor.bind(this))
         this.backgroundChange.addEventListener('click', this.onClickedBackground.bind(this))
         this.fileInput.addEventListener('change', this.onInputFile.bind(this))
+        
+        this.displaySavedProperties()
     }
-
     onClickedColor() {
         this.colorInput.click()
         this.alphaInput.style.visibility = "visible"
@@ -74,10 +82,8 @@ class BackgroundController {
     }
 
     onInputColor() {
-        let colorValue = this.colorInput.value
-        let colorAlpha = this.alphaInput.value
-        this.setSavedColor(colorValue, colorAlpha)
-        this.displayColor(colorValue, colorAlpha)
+        this.setSavedColor()
+        this.displayColor()
     }
 
     onInputFile() {
@@ -92,7 +98,7 @@ class BackgroundController {
     }
 
     getSavedColor() {
-        return localStorage.savedColor ?? BackgroundController.DEFAULT_COLOR
+        return localStorage.savedColor ?? this.DEFAULT_COLOR
     }
     getSavedAlpha() {
         return localStorage.savedAlpha ?? 1
@@ -102,9 +108,9 @@ class BackgroundController {
         return localStorage.savedBackground
     }
 
-    setSavedColor(colorValue, colorAlpha) {
-        localStorage.savedColor = colorValue
-        localStorage.savedAlpha = colorAlpha
+    setSavedColor() {
+        localStorage.savedColor = this.colorInput.value
+        localStorage.savedAlpha = this.alphaInput.value
     }
 
     setSavedFile (file) {
@@ -124,7 +130,9 @@ class BackgroundController {
         return Boolean(localStorage.savedBackground)
     }
 
-    displayColor(colorValue, colorAlpha) {
+    displayColor() {
+        let colorValue = this.getSavedColor()
+        let colorAlpha = this.getSavedAlpha()
         let red = parseInt(colorValue.substring(1,3), 16)
         let green = parseInt(colorValue.substring(3,5), 16)
         let blue = parseInt(colorValue.substring(5,7), 16)
@@ -134,7 +142,7 @@ class BackgroundController {
         document.body.style.backgroundColor = colorValue
         background.forEach(obj => obj.style.backgroundColor = rgba)
 
-        if (BackgroundController.getTextColor(colorValue) === TextColors.BLACK) {
+        if (this.getTextColor(colorValue) === this.TextColors.BLACK) {
             this.colorInput.style.colorScheme = "light"
             document.body.classList.add("black-text")
         } else {
@@ -154,15 +162,14 @@ class BackgroundController {
         if (this.hasSavedBackground()) {
             this.displayBackground(this.getSavedBackground())
         }else{
-            this.displayBackground("https://images.unsplash.com/photo-1449034446853-66c86144b0ad?q=80&w=1280&")
+            this.displayBackground(this.DEFAULT_IMAGE)
         }
     }
 
-    static getTextColor(color) {
+    getTextColor(color) {
         let [r, g, b] = [1, 3, 5].map(n => parseInt(color.substr(n, 2), 16));
         let yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-        return (yiq >= 128) ? TextColors.BLACK : TextColors.WHITE;
+        return (yiq >= 128) ? this.TextColors.BLACK : this.TextColors.WHITE;
     }
 }
-
-export { BackgroundController }
+export { ThemeBar }
