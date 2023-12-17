@@ -1,3 +1,5 @@
+# WARNING
+This exploit has been patched!! if you get it working, do not update or log out or else it will fail to work.
 # Skiovox Helper (forked ver)
 ![Preview image](preview.png)
 ## New features
